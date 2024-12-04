@@ -33,6 +33,13 @@ Example Responses:
 Add the required logic below to complete the API.
 */
 
+app.get("/assistant/greet",(req,res)=>{
+  console.log(req.query.name)
+  res.send("Hi" + req.query.name + "Whats'up bro")
+
+
+})
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Virtual Assistant API is running on http://localhost:${PORT}`);
