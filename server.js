@@ -34,11 +34,35 @@ Add the required logic below to complete the API.
 */
 
 app.get("/assistant/greet",(req,res)=>{
-  console.log(req.query.name)
-  res.send("Hi" + req.query.name + "Whats'up bro")
-
-
+  console.log(req.query)
+  let name = req.query.name
+  let day = new Date().getDay()
+  if(day == 1){
+    let obj={
+      welcomeMessage: `Hello, ${req.query.name}! Welcome to our assistant app!`,
+      dayMessage: "Happy Monday! Start your week with energy!"
+    };
+    return res.send(obj)
+  }else if(day ==5){
+    let obj ={
+      welcomeMessage: `Hello, ${req.query.name}! Welcome to our assistant app!`,
+      dayMessage: "It's Friday! The weekend is near!"
+    };
+    return res.send(obj)
+  }else{
+    let obj={
+      welcomeMessage: `Hello, ${req.query.name}! Welcome to our assistant app!`,
+      dayMessage: "Have a wonderful day!"
+    };
+    return res.send(obj)
+  }
 })
+
+app.get("/",(req,res)=>{
+  console.log(req.query.name)
+  res.send("Hi User, pls input `/assistant/greet?name=`as query followed by your name")
+})
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
